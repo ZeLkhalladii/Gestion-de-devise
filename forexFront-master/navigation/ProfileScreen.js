@@ -3,39 +3,46 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, SafeAreaView, ScrollView, Pressable } from "react-native";
 
 const ProfileScreen = ({ route, navigation }) => {
+ 
+
   const DATA= [
     {
       id: 1,
       symbol: "USD /",
       name: " Dollar Américain",
       img: "https://thumbs.dreamstime.com/b/us-dollar-symbol-21171068.jpg",
-      redirectTo: "https://www.tradingview.com/chart/QsnH9yuy"
+      redirectTo: "https://www.tradingview.com/symbols/SPX/",
+      price: 10
     },
     {
       id: 2,
       symbol: "GBP /",
-      name: " BRITISH POUND",
+     name: " BRITISH POUND",
       img: "https://audnews.com.au/wp-content/uploads/2013/10/British-Pound-symbol.jpg",
-      redirectTo: "https://www.tradingview.com/chart/QsnH9yuy"
+      redirectTo: "https://www.tradingview.com/symbols/TVC-IXIC/",
+      price: 20
     },
-
     {
       id: 3,
       symbol: "JPY /",
       name: " JAPANESE YEN",
       img: "https://static1.squarespace.com/static/566f43754bf118d6d87ea12f/566f4a84df40f39ea7ef8c3f/58548398be659442d5fde0cb/1482171915613/Yen_Japan.png?format=1500w",
-      redirectTo: "https://www.tradingview.com/chart/QsnH9yuy"
+      redirectTo: "https://www.tradingview.com/symbols/DJ-DJI/",
+      price: 30
     }
   ]
 
-  const { user } = route.params;
-  console.log("user from google", user);
+
+
+
+  const { userData, user } = route.params;
+  console.log("user from google", userData);
 
   return (
     <View>
       <View style={styles.userInfo}>
-        <Image source={{uri: `${user.photoUrl}`}} style={{width:40, height:40,borderRadius:25}} />
-        <Text style={styles.userInfoTxt}> welcome {user.name} ^_^ </Text>
+        <Image source={{uri: `${userData.photoUrl}`}} style={{width:40, height:40,borderRadius:25}} />
+        <Text style={styles.userInfoTxt}> welcome {userData.name} ^_^ </Text>
       </View>
 
       <SafeAreaView style={styles.areaView}>
@@ -52,7 +59,7 @@ const ProfileScreen = ({ route, navigation }) => {
                       <Text  style={styles.symbol}>{data.symbol}</Text>
                       <Text  style={styles.nameDevise}>{data.name}</Text>
 
-                    <Pressable style={[styles.button, styles.buttonOpen]} onPress={() =>{ navigation.navigate("Chart", { user, data: data.redirectTo }); }}>
+                    <Pressable style={[styles.button, styles.buttonOpen]} onPress={() =>{ navigation.navigate("Chart", { userData, data: data.redirectTo, cryptoPrice: data.price }); }}>
                       {/* navigation.navigate("Chart", { user }); */}
                       <Text style={styles.GRAPHIC}>GRAPHIC</Text>
                     </Pressable>

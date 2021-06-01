@@ -47,6 +47,7 @@ const ChartScreen = ({ navigation, route }) => {
         </Pressable>
          </View>   
       
+       
 
         <View style={styles.btnGroup}>
             <Pressable onPress={walletFun} style={styles.BTN}>
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop:420,
     },
+    
     buttonTitle: {
         color: 'white',
         fontSize: 16,
